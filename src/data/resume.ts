@@ -69,7 +69,7 @@ export const resumeData: ResumeData = {
     location: "中国",
     github: "https://github.com/gavincao6313-jpg",
     linkedin: "",
-    website: "",
+    website: "https://resume-dun-theta-89.vercel.app",
     avatar: "/caojp.jpg",
     tagline:
       "从电信 OSS 到 AI 产品：15 年 B 端产品沉淀 + 10 个月 AI 全栈实战。把大模型能力做成用户用得上、成本可控、结果可审计的产品。",
