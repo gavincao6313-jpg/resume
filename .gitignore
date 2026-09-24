@@ -25,3 +25,7 @@ dist-ssr
 
 # 旧版静态简历，含未脱敏联系方式，不进入公开仓库
 resume_DSV4_CC.html
+
+# 含手机号的本地导出版，禁止进入公开仓库 / Vercel
+export/
+dist-preview/

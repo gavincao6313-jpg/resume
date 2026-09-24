@@ -2,46 +2,31 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #f8f9fa;
-  --surface: #ffffff;
-  --border: #e2e8f0;
-  --text: #374151;
-  --text-muted: #6b7280;
-  --text-heading: #111827;
-  --accent: #4f46e5;
-  --accent-light: #eef2ff;
-  --accent-hover: #4338ca;
-  --tag-bg: #f1f5f9;
-  --tag-text: #475569;
-  --tech-bg: #ecfdf5;
-  --tech-text: #065f46;
-  --honor-bg: #fef9c3;
-  --honor-text: #854d0e;
-  --radius: 10px;
-  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.06);
-  --shadow-card: 0 2px 8px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  /* 深色科技风：与手机版 PDF 统一配色（深蓝黑底 + 青/紫点缀） */
+  color-scheme: dark;
+  --bg: #0a0f1e;
+  --surface: #111a2e;
+  --border: rgba(56, 189, 248, 0.20);
+  --text: #d6e0ee;
+  --text-muted: #9fb0c8;
+  --text-heading: #f1f5fb;
+  --accent: #38bdf8;
+  --accent-2: #a78bfa;
+  --accent-light: rgba(56, 189, 248, 0.12);
+  --accent-hover: #7dd3fc;
+  --tag-bg: rgba(56, 189, 248, 0.10);
+  --tag-text: #7dd3fc;
+  --tech-bg: rgba(167, 139, 250, 0.12);
+  --tech-text: #c4b5fd;
+  --honor-bg: #422006;
+  --honor-text: #fde68a;
+  --radius: 12px;
+  --shadow: 0 0 0 1px var(--border), 0 8px 24px rgba(0,0,0,.35);
+  --shadow-card: 0 0 0 1px var(--border);
   font-size: 15px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f172a;
-    --surface: #1e293b;
-    --border: #334155;
-    --text: #cbd5e1;
-    --text-muted: #94a3b8;
-    --text-heading: #f1f5f9;
-    --accent: #818cf8;
-    --accent-light: #1e1b4b;
-    --accent-hover: #a5b4fc;
-    --tag-bg: #1e293b;
-    --tag-text: #94a3b8;
-    --tech-bg: #064e3b;
-    --tech-text: #6ee7b7;
-    --honor-bg: #422006;
-    --honor-text: #fde68a;
-  }
-}
+html { background: var(--bg); }
 
 body {
   background: var(--bg);
@@ -90,7 +75,10 @@ a:hover { color: var(--accent-hover); }
 
 /* ── Header ────────────────────────────────────────── */
 .header {
-  background: var(--surface);
+  background:
+    radial-gradient(90% 120% at 100% 0%, rgba(167,139,250,.22), transparent 60%),
+    radial-gradient(70% 100% at 0% 100%, rgba(56,189,248,.16), transparent 60%),
+    var(--surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 36px 40px;
@@ -141,6 +129,10 @@ a:hover { color: var(--accent-hover); }
   font-size: 1rem;
   font-weight: 600;
   color: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-top: 4px;
   margin-bottom: 12px;
 }
@@ -258,7 +250,8 @@ a:hover { color: var(--accent-hover); }
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 8px rgba(56,189,248,.6);
   margin-top: 5px;
   position: relative;
 }
@@ -448,9 +441,12 @@ a:hover { color: var(--accent-hover); }
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--accent);
+  font-family: 'Bahnschrift', 'DIN Alternate', 'Segoe UI', sans-serif;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
+
+.stat-item:nth-child(even) .stat-value { color: var(--accent-2); }
 
 .stat-label {
   font-size: 0.78rem;
@@ -508,8 +504,8 @@ a:hover { color: var(--accent-hover); }
 
 .highlight-label {
   display: inline-block;
-  background: var(--accent-light);
-  color: var(--accent);
+  background: rgba(167, 139, 250, 0.14);
+  color: var(--accent-2);
   font-size: 0.72rem;
   font-weight: 600;
   padding: 1px 8px;
@@ -573,7 +569,7 @@ a:hover { color: var(--accent-hover); }
 }
 
 @media print {
-  body { background: #fff; }
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .page { max-width: 100%; padding: 0; }
   .section, .header { box-shadow: none; border-radius: 0; }
   .upload-bar, .upload-overlay { display: none; }
@@ -748,25 +744,19 @@ a:hover { color: var(--accent-hover); }
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  color: #059669;
+  color: #34d399;
   pointer-events: none;
 }
 .upload-success p { font-size: 0.875rem; font-weight: 600; }
 
-@media (prefers-color-scheme: dark) {
-  .upload-success { color: #34d399; }
-}
 
 .upload-error-msg {
   margin-top: 10px;
   padding: 8px 12px;
-  background: #fef2f2;
-  color: #dc2626;
+  background: #450a0a;
+  color: #fca5a5;
   border-radius: 6px;
   font-size: 0.8rem;
   line-height: 1.5;
 }
 
-@media (prefers-color-scheme: dark) {
-  .upload-error-msg { background: #450a0a; color: #fca5a5; }
-}
